@@ -4,10 +4,11 @@ import githubIcon from "./assets/github-square.svg";
 import linkedinIcon from "./assets/linkedin.svg";
 import profile from "./assets/photo_2024.jpg";
 import Card from "./components/Card";
-
+import logo from "./assets/logo.png";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [navItem, setNavItem] = useState("Home");
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
   };
@@ -18,19 +19,23 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const navList = ["Home", "About", "Project", "Contact Me"];
+  const navList = ["Home", "About", "Projects", "Contact Me"];
 
   return (
     <div className="bg-custom text-white ">
       <header
-        className={` fixed pt-6 pb-6 pl-4 pr-4 md:pl-16 md:pr-16 w-full z-50 bg-custom ${
+        className={` fixed py-6 px-4  md:px-16 lg:px-20 w-full z-50 bg-custom ${
           scrollPosition > 5 && !isSidebarOpen
             ? "bg-custom/90 backdrop-blur-lg border-b-2 border-blue-500"
             : ""
         }  `}
       >
         <nav className="flex justify-between items-center">
-          <div className="font-poppins text-xl">Teddy</div>
+          <div className="font-poppins text-xl w-18 h-10 md:w-24 md:h-12">
+            <a href="#">
+              <img src={logo} alt="" className="w-full h-full" />
+            </a>
+          </div>
 
           <button
             className="block md:hidden text-white text-2xl "
@@ -43,16 +48,26 @@ function App() {
           </button>
           <ul className="hidden md:flex flex-row items-center">
             {navList.map((nav) => (
-              <NavItem key={nav} name={nav} />
+              <li key={nav}>
+                <NavItem
+                  name={nav}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                  navItem={navItem}
+                  setNavItem={setNavItem}
+                />
+              </li>
             ))}
-            <a href="https://github.com/tewodros-tilahun-01">
+            <a href="https://github.com/tewodros-tilahun-01" target="_blank">
               <img
                 src={githubIcon}
                 className="w-6 h-6 ml-6 bg-white hover:bg-blue-400 transition-all hover:scale-150"
                 alt="GitHub"
               />
             </a>
-            <a href="https://www.linkedin.com/in/tewodros--tilahun/">
+            <a
+              href="https://www.linkedin.com/in/tewodros--tilahun/"
+              target="_blank"
+            >
               <img
                 src={linkedinIcon}
                 className="w-6 h-6 ml-4 bg-white hover:bg-blue-400 transition-all hover:scale-150"
@@ -63,7 +78,7 @@ function App() {
         </nav>
 
         <div
-          className={`fixed top-0 left-0 h-full pt-2 bg-black/80 backdrop-blur-lg transition-transform duration-300  ${
+          className={`fixed top-0 left-0 h-full pt-2 bg-black/80 backdrop-blur-lg transition-transform duration-500  ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:hidden w-1/2 z-500`}
         >
@@ -76,11 +91,16 @@ function App() {
           <ul className="flex flex-col p-6 items-center justify-center">
             {navList.map((nav) => (
               <li key={nav} className="mb-4 mt-2">
-                <NavItem name={nav} />
+                <NavItem
+                  name={nav}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                  navItem={navItem}
+                  setNavItem={setNavItem}
+                />
               </li>
             ))}
             <li className="text-xl capitalize ">
-              <a href="https://github.com/tewodros-tilahun-01">
+              <a href="https://github.com/tewodros-tilahun-01" target="_blank">
                 <img
                   src={githubIcon}
                   className="w-6 h-6 bg-white  transition-all inline-block mr-2"
@@ -90,7 +110,10 @@ function App() {
               </a>
             </li>
             <li className="mt-4 text-xl capitalize  ">
-              <a href="https://www.linkedin.com/in/tewodros--tilahun/">
+              <a
+                href="https://www.linkedin.com/in/tewodros--tilahun/"
+                target="_blank"
+              >
                 <img
                   src={linkedinIcon}
                   className="w-6 h-6 bg-white  transition-all  inline-block mr-2"
@@ -103,7 +126,7 @@ function App() {
         </div>
       </header>
 
-      <main className="pl-4 pr-4 md:pl-16 md:pr-16 pt-12">
+      <main className="px-4 md:px-16 lg:px-20  pt-12">
         <section className="md:flex flex-row h-5/6 pt-20 items-center">
           <div className=" w-full md:w-[50%]">
             <p className="font-poppins text-xl capitalize">Hi I'm Teddy</p>
@@ -134,29 +157,39 @@ function App() {
             />
           </div>
         </section>
-        <section className="flex h-3/5  items-start pb-10 gap-10 mt-16 md:gap-20 md:pb-20 md:flex-row  md:mt-40 flex-col-reverse">
+        <section
+          id="About"
+          className="scroll-mt-36 flex h-3/5  items-start pb-10 gap-10 mt-16 md:gap-20 md:pb-20 md:flex-row  md:mt-36 flex-col-reverse"
+        >
           <div className="w-full md:w-1/3 flex items-end justify-center ">
             <img src={profile} alt="" className="" />
           </div>
           <div className="w-full md:w-1/2">
             <h1 className="text-2xl uppercase font-poppins">About me</h1>
-            <p className="font-poppins text-sm text-gray-300">
-              I am a passionate full-stack developer skilled in creating modern,
-              user-friendly web applications. With experience in the MERN stack,
-              I enjoy solving complex problems and building solutions that make
-              people's lives easier. I'm constantly learning and exploring new
-              technologies to enhance my craft. <br /> <br /> I am a passionate
-              full-stack developer skilled in creating modern, user-friendly web
-              applications. With experience in the MERN stack, I enjoy solving
-              complex problems and building solutions that make people's lives
-              easier. I'm constantly learning and exploring new technologies to
-              enhance my craft.
+            <p className="font-poppins text-sm text-gray-300 ">
+              My name is tewodros tilahun, a senior year student at Bahir Dar
+              University. My passion for coding started when I joined
+              university, and I have since developed into a full-stack developer
+              specializing in front-end development. Leveraging the MERN stack,
+              I build intuitive and dynamic applications with a focus on
+              creating seamless user experiences. I have gained valuable
+              expertise through The Odin Project, which has deepened my
+              knowledge of front-end design and development.
+              <br />
+              <br />
+              Problem-solving is one of my key interests, driving me to tackle
+              challenges and craft efficient solutions. I am also exploring
+              React Native to expand my skills in mobile app development, aiming
+              to make a meaningful impact through technology
             </p>
           </div>
         </section>
-        <section className="flex items-center justify-center flex-col pb-10">
-          <h1 className="text-3xl md:text-4xl mb-20">Project</h1>
-          <div className="flex flex-row flex-wrap md:flex-nowrap justify-around w-full gap-20 ">
+        <section
+          id="Projects"
+          className="scroll-mt-32 flex items-center justify-center flex-col pb-8"
+        >
+          <h1 className="text-3xl md:text-4xl mb-12 uppercase">Projects</h1>
+          <div className="flex flex-row flex-wrap md:flex-nowrap justify-around w-full gap-10 ">
             <Card />
             <Card />
             <Card />
@@ -164,8 +197,7 @@ function App() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer></footer>
+      <footer id="Contact Me"></footer>
     </div>
   );
 }
