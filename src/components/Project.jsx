@@ -43,14 +43,14 @@ function Project() {
             description={
               "A modern web application built with React.js for browsing and exploring movies. Users can view detailed information about movies,watch trailer.The app features an intuitive interface and responsive design for seamless user experience."
             }
-            title="movie web app"
+            title="cinema"
           />
           <Card
             image={projectImage2}
             live={"https://ketero-v1.vercel.app/"}
             github={"https://github.com/Tewodros-Tilahun-01/ketero"}
             description="A scheduling web app designed to help users easily organize their day by managing appointments with officers. The app allows customers to book appointments and view officer availability, while officers can add their availability and receive notifications about appointments."
-            title="Scheduling Web App
+            title="ketero
 "
           />
           <Card
